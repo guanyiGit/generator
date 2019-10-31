@@ -1,39 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.soholy.dogmanager.mapper.otherDb.StationMapper">
-  <resultMap id="BaseResultMap" type="com.soholy.dogmanager.entity.otherDb.po.Station">
-    <id column="seq_id" jdbcType="VARCHAR" property="seqId" />
-    <result column="mnc" jdbcType="VARCHAR" property="mnc" />
-    <result column="lac" jdbcType="VARCHAR" property="lac" />
-    <result column="ci" jdbcType="VARCHAR" property="ci" />
-    <result column="describe" jdbcType="VARCHAR" property="describe" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="cretion_time" jdbcType="TIMESTAMP" property="cretionTime" />
-    <result column="lat" jdbcType="DOUBLE" property="lat" />
-    <result column="lon" jdbcType="DOUBLE" property="lon" />
-    <result column="radius" jdbcType="REAL" property="radius" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="remark" jdbcType="INTEGER" property="remark" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.soholy.dogmanager.mapper.otherDb.StationMapper" >
+  <resultMap id="BaseResultMap" type="com.soholy.dogmanager.entity.otherDb.po.Station" >
+    <id column="seq_id" property="seqId" jdbcType="VARCHAR" />
+    <result column="mnc" property="mnc" jdbcType="VARCHAR" />
+    <result column="lac" property="lac" jdbcType="VARCHAR" />
+    <result column="ci" property="ci" jdbcType="VARCHAR" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="cretion_time" property="cretionTime" jdbcType="TIMESTAMP" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="radius" property="radius" jdbcType="REAL" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="INTEGER" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -44,25 +44,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -73,41 +73,41 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     seq_id, mnc, lac, ci, describe, update_time, cretion_time, lat, lon, radius, address, 
     remark
   </sql>
-  <select id="selectByExample" parameterType="com.soholy.dogmanager.entity.otherDb.po.StationExample" resultMap="BaseResultMap">
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.soholy.dogmanager.entity.otherDb.po.StationExample" >
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
     from station
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from station
     where seq_id = #{seqId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from station
     where seq_id = #{seqId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.soholy.dogmanager.entity.otherDb.po.StationExample">
+  <delete id="deleteByExample" parameterType="com.soholy.dogmanager.entity.otherDb.po.StationExample" >
     delete from station
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.soholy.dogmanager.entity.otherDb.po.Station">
+  <insert id="insert" parameterType="com.soholy.dogmanager.entity.otherDb.po.Station" >
     insert into station (seq_id, mnc, lac, 
       ci, describe, update_time, 
       cretion_time, lat, lon, 
@@ -119,136 +119,136 @@
       #{radius,jdbcType=REAL}, #{address,jdbcType=VARCHAR}, #{remark,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.soholy.dogmanager.entity.otherDb.po.Station">
+  <insert id="insertSelective" parameterType="com.soholy.dogmanager.entity.otherDb.po.Station" >
     insert into station
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="seqId != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seqId != null" >
         seq_id,
       </if>
-      <if test="mnc != null">
+      <if test="mnc != null" >
         mnc,
       </if>
-      <if test="lac != null">
+      <if test="lac != null" >
         lac,
       </if>
-      <if test="ci != null">
+      <if test="ci != null" >
         ci,
       </if>
-      <if test="describe != null">
+      <if test="describe != null" >
         describe,
       </if>
-      <if test="updateTime != null">
+      <if test="updateTime != null" >
         update_time,
       </if>
-      <if test="cretionTime != null">
+      <if test="cretionTime != null" >
         cretion_time,
       </if>
-      <if test="lat != null">
+      <if test="lat != null" >
         lat,
       </if>
-      <if test="lon != null">
+      <if test="lon != null" >
         lon,
       </if>
-      <if test="radius != null">
+      <if test="radius != null" >
         radius,
       </if>
-      <if test="address != null">
+      <if test="address != null" >
         address,
       </if>
-      <if test="remark != null">
+      <if test="remark != null" >
         remark,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="seqId != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seqId != null" >
         #{seqId,jdbcType=VARCHAR},
       </if>
-      <if test="mnc != null">
+      <if test="mnc != null" >
         #{mnc,jdbcType=VARCHAR},
       </if>
-      <if test="lac != null">
+      <if test="lac != null" >
         #{lac,jdbcType=VARCHAR},
       </if>
-      <if test="ci != null">
+      <if test="ci != null" >
         #{ci,jdbcType=VARCHAR},
       </if>
-      <if test="describe != null">
+      <if test="describe != null" >
         #{describe,jdbcType=VARCHAR},
       </if>
-      <if test="updateTime != null">
+      <if test="updateTime != null" >
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="cretionTime != null">
+      <if test="cretionTime != null" >
         #{cretionTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="lat != null">
+      <if test="lat != null" >
         #{lat,jdbcType=DOUBLE},
       </if>
-      <if test="lon != null">
+      <if test="lon != null" >
         #{lon,jdbcType=DOUBLE},
       </if>
-      <if test="radius != null">
+      <if test="radius != null" >
         #{radius,jdbcType=REAL},
       </if>
-      <if test="address != null">
+      <if test="address != null" >
         #{address,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null">
+      <if test="remark != null" >
         #{remark,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.soholy.dogmanager.entity.otherDb.po.StationExample" resultType="java.lang.Integer">
+  <select id="countByExample" parameterType="com.soholy.dogmanager.entity.otherDb.po.StationExample" resultType="java.lang.Integer" >
     select count(*) from station
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByExampleSelective" parameterType="map" >
     update station
-    <set>
-      <if test="record.seqId != null">
+    <set >
+      <if test="record.seqId != null" >
         seq_id = #{record.seqId,jdbcType=VARCHAR},
       </if>
-      <if test="record.mnc != null">
+      <if test="record.mnc != null" >
         mnc = #{record.mnc,jdbcType=VARCHAR},
       </if>
-      <if test="record.lac != null">
+      <if test="record.lac != null" >
         lac = #{record.lac,jdbcType=VARCHAR},
       </if>
-      <if test="record.ci != null">
+      <if test="record.ci != null" >
         ci = #{record.ci,jdbcType=VARCHAR},
       </if>
-      <if test="record.describe != null">
+      <if test="record.describe != null" >
         describe = #{record.describe,jdbcType=VARCHAR},
       </if>
-      <if test="record.updateTime != null">
+      <if test="record.updateTime != null" >
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.cretionTime != null">
+      <if test="record.cretionTime != null" >
         cretion_time = #{record.cretionTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.lat != null">
+      <if test="record.lat != null" >
         lat = #{record.lat,jdbcType=DOUBLE},
       </if>
-      <if test="record.lon != null">
+      <if test="record.lon != null" >
         lon = #{record.lon,jdbcType=DOUBLE},
       </if>
-      <if test="record.radius != null">
+      <if test="record.radius != null" >
         radius = #{record.radius,jdbcType=REAL},
       </if>
-      <if test="record.address != null">
+      <if test="record.address != null" >
         address = #{record.address,jdbcType=VARCHAR},
       </if>
-      <if test="record.remark != null">
+      <if test="record.remark != null" >
         remark = #{record.remark,jdbcType=INTEGER},
       </if>
     </set>
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByExample" parameterType="map" >
     update station
     set seq_id = #{record.seqId,jdbcType=VARCHAR},
       mnc = #{record.mnc,jdbcType=VARCHAR},
@@ -262,388 +262,54 @@
       radius = #{record.radius,jdbcType=REAL},
       address = #{record.address,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=INTEGER}
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.soholy.dogmanager.entity.otherDb.po.Station">
+  <update id="updateByPrimaryKeySelective" parameterType="com.soholy.dogmanager.entity.otherDb.po.Station" >
     update station
-    <set>
-      <if test="mnc != null">
+    <set >
+      <if test="mnc != null" >
         mnc = #{mnc,jdbcType=VARCHAR},
       </if>
-      <if test="lac != null">
+      <if test="lac != null" >
         lac = #{lac,jdbcType=VARCHAR},
       </if>
-      <if test="ci != null">
+      <if test="ci != null" >
         ci = #{ci,jdbcType=VARCHAR},
       </if>
-      <if test="describe != null">
+      <if test="describe != null" >
         describe = #{describe,jdbcType=VARCHAR},
       </if>
-      <if test="updateTime != null">
+      <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="cretionTime != null">
+      <if test="cretionTime != null" >
         cretion_time = #{cretionTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="lat != null">
+      <if test="lat != null" >
         lat = #{lat,jdbcType=DOUBLE},
       </if>
-      <if test="lon != null">
+      <if test="lon != null" >
         lon = #{lon,jdbcType=DOUBLE},
       </if>
-      <if test="radius != null">
+      <if test="radius != null" >
         radius = #{radius,jdbcType=REAL},
       </if>
-      <if test="address != null">
+      <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null">
+      <if test="remark != null" >
         remark = #{remark,jdbcType=INTEGER},
       </if>
     </set>
     where seq_id = #{seqId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.soholy.dogmanager.entity.otherDb.po.Station">
+  <update id="updateByPrimaryKey" parameterType="com.soholy.dogmanager.entity.otherDb.po.Station" >
     update station
     set mnc = #{mnc,jdbcType=VARCHAR},
       lac = #{lac,jdbcType=VARCHAR},
       ci = #{ci,jdbcType=VARCHAR},
-      describe = #{describe,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      cretion_time = #{cretionTime,jdbcType=TIMESTAMP},
-      lat = #{lat,jdbcType=DOUBLE},
-      lon = #{lon,jdbcType=DOUBLE},
-      radius = #{radius,jdbcType=REAL},
-      address = #{address,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=INTEGER}
-    where seq_id = #{seqId,jdbcType=VARCHAR}
-  </update>
-  <resultMap id="BaseResultMap" type="com.soholy.dogmanager.entity.otherDb.po.Station">
-    <id column="seq_id" jdbcType="VARCHAR" property="seqId" />
-    <result column="mnc" jdbcType="INTEGER" property="mnc" />
-    <result column="lac" jdbcType="INTEGER" property="lac" />
-    <result column="cell" jdbcType="VARCHAR" property="cell" />
-    <result column="ci" jdbcType="INTEGER" property="ci" />
-    <result column="describe" jdbcType="VARCHAR" property="describe" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="cretion_time" jdbcType="TIMESTAMP" property="cretionTime" />
-    <result column="lat" jdbcType="DOUBLE" property="lat" />
-    <result column="lon" jdbcType="DOUBLE" property="lon" />
-    <result column="radius" jdbcType="REAL" property="radius" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="remark" jdbcType="INTEGER" property="remark" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    seq_id, mnc, lac, cell, ci, describe, update_time, cretion_time, lat, lon, radius, 
-    address, remark
-  </sql>
-  <select id="selectByExample" parameterType="com.soholy.dogmanager.entity.otherDb.po.StationExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from station
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from station
-    where seq_id = #{seqId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from station
-    where seq_id = #{seqId,jdbcType=VARCHAR}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.soholy.dogmanager.entity.otherDb.po.StationExample">
-    delete from station
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.soholy.dogmanager.entity.otherDb.po.Station">
-    insert into station (seq_id, mnc, lac, 
-      cell, ci, describe, 
-      update_time, cretion_time, lat, 
-      lon, radius, address, remark
-      )
-    values (#{seqId,jdbcType=VARCHAR}, #{mnc,jdbcType=INTEGER}, #{lac,jdbcType=INTEGER}, 
-      #{cell,jdbcType=VARCHAR}, #{ci,jdbcType=INTEGER}, #{describe,jdbcType=VARCHAR}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{cretionTime,jdbcType=TIMESTAMP}, #{lat,jdbcType=DOUBLE}, 
-      #{lon,jdbcType=DOUBLE}, #{radius,jdbcType=REAL}, #{address,jdbcType=VARCHAR}, #{remark,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.soholy.dogmanager.entity.otherDb.po.Station">
-    insert into station
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="seqId != null">
-        seq_id,
-      </if>
-      <if test="mnc != null">
-        mnc,
-      </if>
-      <if test="lac != null">
-        lac,
-      </if>
-      <if test="cell != null">
-        cell,
-      </if>
-      <if test="ci != null">
-        ci,
-      </if>
-      <if test="describe != null">
-        describe,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-      <if test="cretionTime != null">
-        cretion_time,
-      </if>
-      <if test="lat != null">
-        lat,
-      </if>
-      <if test="lon != null">
-        lon,
-      </if>
-      <if test="radius != null">
-        radius,
-      </if>
-      <if test="address != null">
-        address,
-      </if>
-      <if test="remark != null">
-        remark,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="seqId != null">
-        #{seqId,jdbcType=VARCHAR},
-      </if>
-      <if test="mnc != null">
-        #{mnc,jdbcType=INTEGER},
-      </if>
-      <if test="lac != null">
-        #{lac,jdbcType=INTEGER},
-      </if>
-      <if test="cell != null">
-        #{cell,jdbcType=VARCHAR},
-      </if>
-      <if test="ci != null">
-        #{ci,jdbcType=INTEGER},
-      </if>
-      <if test="describe != null">
-        #{describe,jdbcType=VARCHAR},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="cretionTime != null">
-        #{cretionTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lat != null">
-        #{lat,jdbcType=DOUBLE},
-      </if>
-      <if test="lon != null">
-        #{lon,jdbcType=DOUBLE},
-      </if>
-      <if test="radius != null">
-        #{radius,jdbcType=REAL},
-      </if>
-      <if test="address != null">
-        #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null">
-        #{remark,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.soholy.dogmanager.entity.otherDb.po.StationExample" resultType="java.lang.Integer">
-    select count(*) from station
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update station
-    <set>
-      <if test="record.seqId != null">
-        seq_id = #{record.seqId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.mnc != null">
-        mnc = #{record.mnc,jdbcType=INTEGER},
-      </if>
-      <if test="record.lac != null">
-        lac = #{record.lac,jdbcType=INTEGER},
-      </if>
-      <if test="record.cell != null">
-        cell = #{record.cell,jdbcType=VARCHAR},
-      </if>
-      <if test="record.ci != null">
-        ci = #{record.ci,jdbcType=INTEGER},
-      </if>
-      <if test="record.describe != null">
-        describe = #{record.describe,jdbcType=VARCHAR},
-      </if>
-      <if test="record.updateTime != null">
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.cretionTime != null">
-        cretion_time = #{record.cretionTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.lat != null">
-        lat = #{record.lat,jdbcType=DOUBLE},
-      </if>
-      <if test="record.lon != null">
-        lon = #{record.lon,jdbcType=DOUBLE},
-      </if>
-      <if test="record.radius != null">
-        radius = #{record.radius,jdbcType=REAL},
-      </if>
-      <if test="record.address != null">
-        address = #{record.address,jdbcType=VARCHAR},
-      </if>
-      <if test="record.remark != null">
-        remark = #{record.remark,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update station
-    set seq_id = #{record.seqId,jdbcType=VARCHAR},
-      mnc = #{record.mnc,jdbcType=INTEGER},
-      lac = #{record.lac,jdbcType=INTEGER},
-      cell = #{record.cell,jdbcType=VARCHAR},
-      ci = #{record.ci,jdbcType=INTEGER},
-      describe = #{record.describe,jdbcType=VARCHAR},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      cretion_time = #{record.cretionTime,jdbcType=TIMESTAMP},
-      lat = #{record.lat,jdbcType=DOUBLE},
-      lon = #{record.lon,jdbcType=DOUBLE},
-      radius = #{record.radius,jdbcType=REAL},
-      address = #{record.address,jdbcType=VARCHAR},
-      remark = #{record.remark,jdbcType=INTEGER}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.soholy.dogmanager.entity.otherDb.po.Station">
-    update station
-    <set>
-      <if test="mnc != null">
-        mnc = #{mnc,jdbcType=INTEGER},
-      </if>
-      <if test="lac != null">
-        lac = #{lac,jdbcType=INTEGER},
-      </if>
-      <if test="cell != null">
-        cell = #{cell,jdbcType=VARCHAR},
-      </if>
-      <if test="ci != null">
-        ci = #{ci,jdbcType=INTEGER},
-      </if>
-      <if test="describe != null">
-        describe = #{describe,jdbcType=VARCHAR},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="cretionTime != null">
-        cretion_time = #{cretionTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lat != null">
-        lat = #{lat,jdbcType=DOUBLE},
-      </if>
-      <if test="lon != null">
-        lon = #{lon,jdbcType=DOUBLE},
-      </if>
-      <if test="radius != null">
-        radius = #{radius,jdbcType=REAL},
-      </if>
-      <if test="address != null">
-        address = #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null">
-        remark = #{remark,jdbcType=INTEGER},
-      </if>
-    </set>
-    where seq_id = #{seqId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.soholy.dogmanager.entity.otherDb.po.Station">
-    update station
-    set mnc = #{mnc,jdbcType=INTEGER},
-      lac = #{lac,jdbcType=INTEGER},
-      cell = #{cell,jdbcType=VARCHAR},
-      ci = #{ci,jdbcType=INTEGER},
       describe = #{describe,jdbcType=VARCHAR},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       cretion_time = #{cretionTime,jdbcType=TIMESTAMP},
